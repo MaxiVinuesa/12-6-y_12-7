@@ -54,10 +54,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Scanner scc = new Scanner(System.in);
-        int opc, bandera = 0;
+        int opc, bandera1 = 0;
         TablaDispersaEnlazada tabla = new TablaDispersaEnlazada();
-
-        System.out.println("Hola");
+        Pausa pausar = new Pausa();
 
         do {
 
@@ -72,25 +71,29 @@ public class Main {
                 case 1:
                     // insertar
                     asignar(tabla, scc);
-                    bandera = 1;
+                    bandera1 = 1;
                     break;
                 case 2:
-                    if (bandera == 1) {
+                    if (bandera1 == 1) {
                         // Eliminar
                         System.out.println("Ingrese el codigo del socio a eliminar.\n");
-                        scc.nextLine();
                         int codigo = scc.nextInt();
                         tabla.eliminar(codigo);
+                        pausar.pausar();
                     } else {
                         System.out.println("Primero debe igresar socios....\n");
+                        pausar.pausar();
                     }
 
                     break;
                 case 3:
-                    if (bandera == 1) {
+                    if (bandera1 == 1) {
                         // mostrar
+                        tabla.mostrar();
+                        pausar.pausar();
                     } else {
                         System.out.println("Primero debe igresar socios....\n");
+                        pausar.pausar();
                     }
 
                     break;

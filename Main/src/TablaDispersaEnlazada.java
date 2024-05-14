@@ -46,14 +46,16 @@ public class TablaDispersaEnlazada {
             anterior = null;
             actual = tabla[posicion];
 
-            while ((actual.sgte != null) && actual.getSocio().getCodigo() != codigo) {
+            while ((actual.sgte != null) && ((actual.getSocio().getCodigo()) != codigo)) {
                 anterior = actual;
                 actual = actual.sgte;
             }
 
-            if (actual.getSocio().getCodigo() != codigo) {
+            if ((actual.getSocio().getCodigo()) != codigo) {
                 System.out.println("El socio al que quiere eliminar no se pudo encontrar en la tabla.\n");
-            } else if (conforme(actual.getSocio())) {
+            }
+
+            else if (conforme(actual.getSocio())) {
                 if (anterior == null) {
                     tabla[posicion] = actual.sgte;
                 } else {
@@ -63,27 +65,44 @@ public class TablaDispersaEnlazada {
                     nElementos--;
                 }
             }
+            System.out.println("El socio se elimino correctamente.\n");
         }
     }
 
-    // Buscar elementos
-
     public Elemento buscar(int codigo) {
-        Elemento p = null;
+        Elemento persona = null;
         int posicion;
 
         posicion = dispersion.dispersion(codigo);
 
         if (tabla[posicion] != null) {
-            p = tabla[posicion];
-            while ((p.sgte != null) && p.socio.codigo != codigo) {
-                p = p.sgte;
-                if (p.socio.codigo != codigo) {
-                    p = null;
+            persona = tabla[posicion];
+            while ((persona.sgte != null) && persona.socio.codigo != codigo) {
+                persona = persona.sgte;
+                if (persona.socio.codigo != codigo) {
+                    persona = null;
                 }
             }
         }
-        return p;
+        return persona;
+    }
+
+    public void mostrar() {
+
+        for (int posicion = 0; posicion < M; posicion++) {
+
+            Elemento actual = tabla[posicion];
+
+            while (actual != null) {
+
+                System.out.println("Persona N° " + posicion); // Muestra el codigo HASH
+                System.out.println("Codigo: " + actual.getSocio().getCodigo() + "\n");
+                System.out.println("Nombre: " + actual.getSocio().getNombre() + "\n");
+                System.out.println("Edad: " + actual.getSocio().getEdad() + "\n");
+                actual = actual.sgte;
+            }
+        }
+
     }
 
 }
