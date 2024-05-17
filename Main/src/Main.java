@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     static public void asignar(TablaDispersaEnlazada tabla, Scanner input) {
-        int lugar = 0, control = 1, codigoDisperso, bandera, edad, dia, mes, anio, codigo;
+        int lugar = 0, control = 1, codigoDisperso, bandera = 0, edad, dia, mes, anio, codigo;
         String nombre;
 
         Dispersion dispersion = new Dispersion();
@@ -51,6 +51,11 @@ public class Main {
         }
     }
 
+    public static void LimpiarPantalla() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public static void main(String[] args) throws Exception {
 
         Scanner scc = new Scanner(System.in);
@@ -59,7 +64,7 @@ public class Main {
         Pausa pausar = new Pausa();
 
         do {
-
+            LimpiarPantalla();
             System.out.println("Bienvenido... \n ¿Qué operación desea realizar?\n");
             System.out.println("1) Insertar Socio.\n");
             System.out.println("2) Eliminar Socio.\n");
@@ -91,6 +96,7 @@ public class Main {
                         // mostrar
                         tabla.mostrar();
                         pausar.pausar();
+                        LimpiarPantalla();
                     } else {
                         System.out.println("Primero debe igresar socios....\n");
                         pausar.pausar();

@@ -39,8 +39,10 @@ public class TablaDispersaEnlazada {
         int posicion;
 
         posicion = dispersion.dispersion(codigo);
-
         if (tabla[posicion] != null) {
+            if (tabla[posicion].getSocio().getCodigo() != codigo) {
+                System.out.println("No se pudo eliminar.\n");
+            }
             Elemento anterior, actual;
 
             anterior = null;
@@ -66,6 +68,8 @@ public class TablaDispersaEnlazada {
                 }
             }
             System.out.println("El socio se elimino correctamente.\n");
+        } else if (tabla[posicion] == null) {
+            System.out.println("No se pudo eliminar el socio.\n");
         }
     }
 
